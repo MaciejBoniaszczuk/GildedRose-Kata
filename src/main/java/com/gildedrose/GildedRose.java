@@ -23,9 +23,9 @@ class GildedRose {
                 break;
             case "Sulfuras, Hand of Ragnaros":
                 break;
-            case "Conjured Mana Cake":
-                updateConjuredManaCake(item);
-
+            case "Conjured":
+                updateConjured(item);
+                break;
             default:
                 updateDefault(item);
                 break;
@@ -34,46 +34,56 @@ class GildedRose {
 
     private void updateDefault(Item item) {
         if (item.quality > 0) {
-            item.quality = item.quality - 1;
+            decrementQuality(item);
         }
 
-        item.sellIn = item.sellIn - 1;
+        decrementSellIn(item);
 
         if (item.sellIn < 0) {
             if (item.quality > 0) {
-                item.quality = item.quality - 1;
+                decrementQuality(item);
             }
         }
     }
 
-    private void updateConjuredManaCake(Item item) {
+
+
+    private void updateConjured(Item item) {
         if (item.quality > 0) {
-            item.quality = item.quality - 2;
+            decrementQualityBy2(item);
         }
 
-        item.sellIn = item.sellIn - 1;
+        decrementSellIn(item);
 
         if (item.sellIn < 0) {
             if (item.quality > 0) {
-                item.quality = item.quality - 2;
+                decrementQualityBy2(item);
             }
         }
+        if(item.quality<0){
+            item.quality = 0;
+        }
     }
+
 
     private void updateBackstagePasses(Item item) {
         if (item.quality < 50) {
-            item.quality = item.quality++;
+            incrementQuality(item);
 
-            if (item.sellIn < 11 && item.quality < 50) {
-                    item.quality = item.quality + 1;
+            if (item.sellIn < 11) {
+                if (item.quality < 50) {
+                    incrementQuality(item);
+                }
             }
 
-            if (item.sellIn < 6 && item.quality < 50) {
-                    item.quality = item.quality + 1;
+            if (item.sellIn < 6) {
+                if (item.quality < 50) {
+                    incrementQuality(item);
+                }
             }
         }
 
-        item.sellIn = item.sellIn - 1;
+        decrementSellIn(item);
 
         if (item.sellIn < 0) {
             item.quality = 0;
@@ -81,20 +91,36 @@ class GildedRose {
         return;
     }
 
+
+
     private void updateAgedBrie(Item item) {
         if (item.quality < 50) {
-            item.quality = item.quality + 1;
+            incrementQuality(item);
 
         }
 
-        item.sellIn = item.sellIn - 1;
+        decrementSellIn(item);
 
         if (item.sellIn < 0) {
             if (item.quality < 50) {
-                item.quality = item.quality + 1;
+                incrementQuality(item);
             }
         }
         return;
+    }
+
+    private void decrementSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+    private void decrementQuality(Item item) {
+        item.quality = item.quality - 1;
+    }
+    private void incrementQuality(Item item) {
+        item.quality = item.quality + 1;
+    }
+    private void decrementQualityBy2(Item item) {
+        item.quality = item.quality - 2;
     }
 
 }
