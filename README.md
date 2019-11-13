@@ -29,36 +29,28 @@ Na samym początku warto zmodyfikować istniejący już w klasie „GildedRoseTe
 ****
 
 Rys1. Test: update Quality()
+![](/img/rys1.png) 
 
 Refaktoryzacja:
 
 Refaktoryzację zacząłem od „extract method”. W głównej metodzie programu „updateQuality” zostawiłem tylko pętlę for (zmieniłem ją na for each), która iteruje po każdym z istniejących itemów. Poniższy rysunek przedstawia wyżej wspomnianą metodę.
 
-
-
+Rys2. Metoda: updateQuality
 
 Następnie metoda „updateQuality” przenosi nas do „wyjętej” metody doUpdateQuality, w której odbywa się główne działanie programu. Początkowo zawartość tej pętli była bardzo skomplikowana i trudna do zrozumienia ponieważ powtarzało się tam wiele if-ów oraz else-ów. Poniżej metoda doUpdateQuality przed refaktoryzacją.
 
-
-
+Rys3. DoUpdateQuality przed refaktoryzacją
 
 Następnie kod został poddany testowi w CodeClimate. Otrzymany wynik maintainability to F.
 
-
-
+Rys.4 CodeClimate po wstępnym refaktorze.
 
 Uwzględniając podpowiedzi jakie wygenerował CodeClimate postanowiłem kontynuować refaktoryzację kodu. W metodzie doUpdateQuality zastosowałem instrukcję switch, która w zależności od nazwy itemu wykonuje określoną metodę. Poniżej zrefaktoryzowana metoda doUpdateQuality.
 
-
-
+Rys.5 Metoda doUpdateQuality po refaktoryzacji.
 
 Jak widać na powyższym rysunku powstały 4 kolejne metody, w których znajdował się  kod odpowiadający za zmienianie wartości „sellIn” oraz „quality” dla każdego z itemów. Ponownie przetestowano kod w CodeClimate, jednak wynik nadal nie był zadowalający. Powtarzające się fragmenty kodu ponownie „wyekstraktowano” na zewnątrz”. Finalnie CodeClimat ocenił kod na najlepszą ocenę – A.
 
-
-
+Rys.6 CodeClimate po refaktoryzacji.
 
 Na końcu przetestowano działanie sklepu w okresie 120 dni. Test nie wykrył żadnych błędów.
-
-
-
-*Rysunki dostepne w pdfie załączonym do repozytorium*
