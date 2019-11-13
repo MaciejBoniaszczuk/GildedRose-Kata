@@ -8,8 +8,8 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            doUpdateQuality(items[i]);
+        for (Item item : items) {
+            doUpdateQuality(item);
         }
     }
 
@@ -71,15 +71,11 @@ class GildedRose {
             incrementQuality(item);
 
             if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                    incrementQuality(item);
-                }
+                incrementQualityLowerThan50(item);
             }
 
             if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                    incrementQuality(item);
-                }
+                incrementQualityLowerThan50(item);
             }
         }
 
@@ -88,31 +84,21 @@ class GildedRose {
         if (item.sellIn < 0) {
             item.quality = 0;
         }
-        return;
     }
 
-
-
     private void updateAgedBrie(Item item) {
-        if (item.quality < 50) {
-            incrementQuality(item);
-
-        }
+        incrementQualityLowerThan50(item);
 
         decrementSellIn(item);
 
         if (item.sellIn < 0) {
-            if (item.quality < 50) {
-                incrementQuality(item);
-            }
+            incrementQualityLowerThan50(item);
         }
-        return;
     }
 
     private void decrementSellIn(Item item) {
         item.sellIn = item.sellIn - 1;
     }
-
     private void decrementQuality(Item item) {
         item.quality = item.quality - 1;
     }
@@ -122,5 +108,9 @@ class GildedRose {
     private void decrementQualityBy2(Item item) {
         item.quality = item.quality - 2;
     }
-
+    private void incrementQualityLowerThan50(Item item) {
+        if (item.quality < 50) {
+            incrementQuality(item);
+        }
+    }
 }
