@@ -18,15 +18,11 @@ Praca została wykonana w języku Java. Celem projektu było zrefaktoryzowanie k
 
 **Napisanie testu:**
 
-****
 
 Na samym początku warto zmodyfikować istniejący już w klasie „GildedRoseTest” test, tak aby sprawdzał, czy zmiany wprowadzane podczas refaktoryzacji, nie powodują błędnych wyników. Do testowania skorzystano z metody „Approvals.verify”, która dokonuje zapisu wyników, a następnie porównuje go do kolejnego testu, sprawdzając czy wyniki nie uległy zmianie. Poniższy rysunek przedstawia kod testu „update Quality()”.
 
 ****
 
-****
-
-****
 
 Rys1. Test: update Quality()
 ![](/img/rys1.png) 
