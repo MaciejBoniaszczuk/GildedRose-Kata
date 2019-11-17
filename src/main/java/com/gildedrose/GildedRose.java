@@ -96,21 +96,12 @@ class GildedRose {
         }
     }
 
-    private void decrementSellIn(Item item) {
-        item.sellIn = item.sellIn - 1;
-    }
-    private void decrementQuality(Item item) {
-        item.quality = item.quality - 1;
-    }
-    private void incrementQuality(Item item) {
-        item.quality = item.quality + 1;
-    }
+    private void decrementSellIn(Item item) { item.sellIn = item.sellIn - 1; }
+    private void decrementQuality(Item item) { item.quality = item.quality - 1; }
+    private void incrementQuality(Item item) { item.quality = item.quality + 1; }
     private void decrementQualityBy2(Item item) {
         item.quality = item.quality - 2;
     }
     private void incrementQualityLowerThan50(Item item) {
-        if (item.quality < 50) {
-            incrementQuality(item);
-        }
-    }
+        if (item.quality < 50) { incrementQuality(item); } }
 }
